@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+"""BaseModel for all other classes"""
+
 import uuid
 from datetime import datetime
 
