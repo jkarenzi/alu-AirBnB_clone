@@ -3,7 +3,7 @@
 
 import uuid
 from datetime import datetime
-
+import models
 class BaseModel:
     def __init__(self, *args, **kwargs):
         """constructor method for the class"""
@@ -18,6 +18,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """returns the string representation"""
@@ -30,6 +31,7 @@ class BaseModel:
         the current datetime whenever called.
         """
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """
