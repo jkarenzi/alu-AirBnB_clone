@@ -37,7 +37,7 @@ class TestFileStorage(unittest.TestCase):
         self.storage_1.new(obj)
         self.storage_1.save()
         self.storage_1.reload()     
-        objs = FileStorage.__objects
+        objs = self.storage_1.all()
         self.assertIn("City.{}".format(obj.id), objs)
 
 if __name__ == '__main__':
