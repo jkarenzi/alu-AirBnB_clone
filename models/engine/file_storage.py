@@ -2,7 +2,6 @@
 
 import json
 from models.base_model import BaseModel
-from models.base_model import BaseModel
 from models.user import User
 from models.state import State
 from models.city import City
@@ -30,9 +29,11 @@ class FileStorage():
     def save(self):
         """Serializes __objects to the JSON file"""
         data = {}
+        x = {'x':1}
         for key, obj in self.__objects.items():
             data[key] = obj.to_dict()
         with open(self.__file_path, 'w') as file:
+            json.dump(x)
             json.dump(data, file)
 
     def reload(self):
