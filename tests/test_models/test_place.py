@@ -39,39 +39,39 @@ class TestUserModel(unittest.TestCase):
         
     def test_rooms(self): 
         self.assertIsInstance(self.place_model.number_rooms, int)
-        self.assertEqual(self.place_model.number_rooms, "0")
-        self.place_model.number_rooms = "34"   
-        self.assertEqual(self.place_model.number_rooms, "34")
+        self.assertEqual(self.place_model.number_rooms, 0)
+        self.place_model.number_rooms = 34   
+        self.assertEqual(self.place_model.number_rooms, 34)
 
     def test_bathrooms(self): 
         self.assertIsInstance(self.place_model.number_bathrooms, int)
-        self.assertEqual(self.place_model.number_bathrooms, "0")
-        self.place_model.number_bathrooms = "34"   
-        self.assertEqual(self.place_model.number_bathrooms, "34")   
+        self.assertEqual(self.place_model.number_bathrooms, 0)
+        self.place_model.number_bathrooms = 34  
+        self.assertEqual(self.place_model.number_bathrooms, 34)   
 
     def test_guest(self): 
         self.assertIsInstance(self.place_model.max_guest, int)
-        self.assertEqual(self.place_model.max_guest, "0")
-        self.place_model.max_guest = "50"   
-        self.assertEqual(self.place_model.max_guest, "50")   
+        self.assertEqual(self.place_model.max_guest, 0)
+        self.place_model.max_guest = 50   
+        self.assertEqual(self.place_model.max_guest, 50)   
 
     def test_price(self): 
         self.assertIsInstance(self.place_model.price_by_night, int)
-        self.assertEqual(self.place_model.price_by_night, "0")
-        self.place_model.price_by_night = "5000"   
-        self.assertEqual(self.place_model.price_by_night, "5000")                         
+        self.assertEqual(self.place_model.price_by_night, 0)
+        self.place_model.price_by_night = 5000  
+        self.assertEqual(self.place_model.price_by_night, 5000)                         
             
     def test_latitude(self): 
         self.assertIsInstance(self.place_model.latitude, float)
-        self.assertEqual(self.place_model.latitude, "0.0")
-        self.place_model.latitude = "34.0"   
-        self.assertEqual(self.place_model.latitude, "34.0")   
+        self.assertEqual(self.place_model.latitude, 0.0)
+        self.place_model.latitude = 34.0   
+        self.assertEqual(self.place_model.latitude, 34.0)   
 
     def test_longitude(self): 
         self.assertIsInstance(self.place_model.longitude, float)
-        self.assertEqual(self.place_model.longitude, "0.0")
-        self.place_model.longitude = "54.0"   
-        self.assertEqual(self.place_model.longitude, "34.5")   
+        self.assertEqual(self.place_model.longitude, 0.0)
+        self.place_model.longitude = 54.0   
+        self.assertEqual(self.place_model.longitude, 34.5)   
 
     def test_amenity_ids(self):
         self.assertIsInstance(self.place_model.amenity_ids, list)
