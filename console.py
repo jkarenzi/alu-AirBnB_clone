@@ -7,7 +7,7 @@ import models
 class HBNBCommand(cmd.Cmd):
     """class for the console, inheriting from cmd.Cmd"""
     prompt = '(hbnb)'
-    
+
     def do_quit(self, arg):
         """command for exiting the program."""
         return True
@@ -77,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
             for key, value in models.storage.all().items():
                 if key.split('.')[0] == args[0]:
                     print(str(value))
-                   
+          
     def do_update(self, arg):
         """
         Updates an instance based on the class name 
