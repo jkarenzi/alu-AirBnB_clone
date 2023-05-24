@@ -71,7 +71,7 @@ class TestUserModel(unittest.TestCase):
         self.assertIsInstance(self.place_model.longitude, float)
         self.assertEqual(self.place_model.longitude, 0.0)
         self.place_model.longitude = 54.0   
-        self.assertEqual(self.place_model.longitude, 34.5)   
+        self.assertEqual(self.place_model.longitude, 54.0)   
 
     def test_amenity_ids(self):
         self.assertIsInstance(self.place_model.amenity_ids, list)
