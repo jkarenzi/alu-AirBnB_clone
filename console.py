@@ -3,6 +3,7 @@
 import cmd
 import models
 
+
 class HBNBCommand(cmd.Cmd):
     """class for the console, inheriting from cmd.Cmd"""
     prompt = '(hbnb)'
