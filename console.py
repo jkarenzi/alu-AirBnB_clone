@@ -9,7 +9,6 @@ import models
 class HBNBCommand(cmd.Cmd):
     """class for the console, inheriting from cmd.Cmd"""
     prompt = '(hbnb)'
-    
     def do_quit(self, arg):
         """command for exiting the program."""
         return True
@@ -73,7 +72,6 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             for value in models.storage.all().values():
                 print(str(value))
-        
         elif args[0] not in models.dict_classes:
             print("** class doesn't exist **")
         else:
@@ -82,7 +80,10 @@ class HBNBCommand(cmd.Cmd):
                     print(str(value))
                    
     def do_update(self, arg):
-        """Updates an instance based on the class name and id by adding or updating attribute"""
+        """
+        Updates an instance based on the class name 
+        and id by adding or updating attribute
+        """
         args = arg.split()
         if not args:
             print("** class name missing **")
@@ -99,7 +100,8 @@ class HBNBCommand(cmd.Cmd):
             if instance_key in models.storage.all():
                 attr_name = args[2]
                 attr_value = args[3].strip('"')
-                setattr(models.storage.all()[instance_key], attr_name, attr_value)
+                setattr(
+                    models.storage.all()[instance_key], attr_name, attr_value)
                 models.storage.save()
             else:
                 print("** no instance found **")
@@ -107,4 +109,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()  
-      
