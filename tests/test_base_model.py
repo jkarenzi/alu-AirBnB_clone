@@ -51,7 +51,8 @@ class TestBaseModel(unittest.TestCase):
     def test__str__(self):
         """test for __str__ of the BaseModel class"""
         actual_output = str(self.base_model)
-        self.assertEqual(actual_output,
+        self.assertEqual(
+            actual_output,
             f"[BaseModel] ({self.base_model.id}) {self.base_model.__dict__}")
 
 if __name__ == '__main__':
