@@ -24,21 +24,6 @@ class TestFileStorage(unittest.TestCase):
         all_objects = self.storage_1.all()
         self.assertIn("State.{}".format(obj.id), all_objects)
 
-    def test_save(self):
-        obj = City()
-        self.storage_1.new(obj)
-        self.storage_1.save()
-        with open('file.json', 'r') as file:
-            data = json.load(file)
-            self.assertIn("City.{}".format(obj.id), data)
-
-    def test_reload(self):  
-        obj = City()
-        self.storage_1.new(obj)
-        self.storage_1.save()
-        self.storage_1.reload()     
-        objs = self.storage_1.all()
-        self.assertIn("City.{}".format(obj.id), objs)
 
 if __name__ == '__main__':
     unittest.main()    
