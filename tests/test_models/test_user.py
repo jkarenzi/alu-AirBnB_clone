@@ -23,7 +23,7 @@ class TestUserModel(unittest.TestCase):
         self.assertIsInstance(self.user_model.last_name, str)
         self.assertEqual(self.user_model.last_name, "")
         self.user_model.last_name = "JMK"   
-        self.assertEqual(self.user_model.first_name, "JMK")    
+        self.assertEqual(self.user_model.last_name, "JMK")    
 
     def test_email(self): 
         self.assertIsInstance(self.user_model.email, str)
@@ -39,4 +39,3 @@ class TestUserModel(unittest.TestCase):
     
 if __name__ == "__main__":
     unittest.main()
-    
