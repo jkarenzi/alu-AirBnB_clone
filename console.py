@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""
-This module helps us create a command interpreter 
-for the airbnb project
-"""
+"""command line interpreter"""
 import cmd
 import models
 
@@ -108,4 +105,4 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == "__main__":
-    HBNBCommand().cmdloop()  
+    HBNBCommand().cmdloop()
