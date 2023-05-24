@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """test file for BaseModel class"""
-
 import unittest
 from datetime import datetime
 from models.base_model import BaseModel
 
+
 class TestBaseModel(unittest.TestCase):
-    """creating a testcase class that inherits from unittest.TestCase"""
+    """creating a testcase that inherits from unittest.TestCase"""
     def setUp(self):
         """setting up the object for testing"""
         self.base_model = BaseModel()
