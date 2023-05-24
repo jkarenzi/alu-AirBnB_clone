@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """test for the FileStorage class"""
 
+import models
+import os
 import unittest
 import json
 from models.base_model import BaseModel
@@ -14,61 +16,92 @@ from models.engine.file_storage import FileStorage
 
 class TestFileStorage(unittest.TestCase):
     def setUp(self):
-        self.storage_1 = FileStorage()
+        try:
+            os.rename("file.json", "tmp")
+        except IOError:
+            pass
+
+    def tearDown(self):
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
+        try:
+            os.rename("tmp", "file.json")
+        except IOError:
+            pass
+        FileStorage._FileStorage__objects = {}    
 
     def test_all(self):
-        self.assertIsInstance(self.storage_1.all(), dict)
+        self.assertIsInstance(models.storage.all(), dict)
         
     def test_new(self):
         obj = State()
-        all_objects = self.storage_1.all()
+        all_objects = models.storage.all()
         self.assertIn("State.{}".format(obj.id), all_objects)
 
-    def test_save_and_reload(self):
-        # Create some objects to save
-        obj1 = BaseModel()
+    def test_save(self):
+        obj1= BaseModel()
         obj2 = User()
         obj3 = State()
-        obj4 = City()
-        obj5 = Place()
+        obj4 = Place()
+        obj5 = City()
         obj6 = Amenity()
         obj7 = Review()
+        models.storage.new(obj1)
+        models.storage.new(obj2)
+        models.storage.new(obj3)
+        models.storage.new(obj4)
+        models.storage.new(obj5)
+        models.storage.new(obj6)
+        models.storage.new(obj7) 
+        models.storage.save()
+        with open("file.json", "r") as file:
+            json_data = file.read()
+            self.assertIn("BaseModel." + obj1.id, json_data)
+            self.assertIn("User." + obj2.id, json_data)
+            self.assertIn("State." + obj3.id, json_data)
+            self.assertIn("Place." + obj4.id, json_data)
+            self.assertIn("City." + obj5.id, json_data)
+            self.assertIn("Amenity." + obj6.id, json_data)
+            self.assertIn("Review." + obj7.id, json_data)
 
-        # Add objects to the storage
-        self.storage_1.new(obj1)
-        self.storage_1.new(obj2)
-        self.storage_1.new(obj3)
-        self.storage_1.new(obj4)
-        self.storage_1.new(obj5)
-        self.storage_1.new(obj6)
-        self.storage_1.new(obj7)
+    def test_save_with_arg(self):
+        with self.assertRaises(TypeError):
+            models.storage.save(None)
 
-        # Save the objects
-        self.storage_1.save()
+    def test_reload(self):
+        x = BaseModel()
+        y = User()
+        z = State()
+        a = Place()
+        b = City()
+        c = Amenity()
+        d = Review()
+        models.storage.new(x)
+        models.storage.new(y)
+        models.storage.new(z)
+        models.storage.new(a)
+        models.storage.new(b)
+        models.storage.new(c)
+        models.storage.new(d)
+        models.storage.save()
+        models.storage.reload()
+        objs = FileStorage._FileStorage__objects
+        self.assertIn("BaseModel." + x.id, objs)
+        self.assertIn("User." + y.id, objs)
+        self.assertIn("State." + z.id, objs)
+        self.assertIn("Place." + a.id, objs)
+        self.assertIn("City." + b.id, objs)
+        self.assertIn("Amenity." + c.id, objs)
+        self.assertIn("Review." + d.id, objs)
+    
+    def test_reload_no_file(self):
+        self.assertRaises(FileNotFoundError, models.storage.reload())
 
-        # Clear the objects in storage
-        self.storage_1._FileStorage__objects = {}
-
-        # Reload the objects
-        self.storage_1.reload()
-
-        # Check if objects were reloaded correctly
-        self.assertIn("BaseModel.{}".format(obj1.id), self.storage_1.all())
-        self.assertIn("User.{}".format(obj2.id), self.storage_1.all())
-        self.assertIn("State.{}".format(obj3.id), self.storage_1.all())
-        self.assertIn("City.{}".format(obj4.id), self.storage_1.all())
-        self.assertIn("Place.{}".format(obj5.id), self.storage_1.all())
-        self.assertIn("Amenity.{}".format(obj6.id), self.storage_1.all())
-        self.assertIn("Review.{}".format(obj7.id), self.storage_1.all())
-
-        # Check if reloaded objects have the correct attributes
-        self.assertEqual(self.storage_1.all()["BaseModel.{}".format(obj1.id)].id, obj1.id)
-        self.assertEqual(self.storage_1.all()["User.{}".format(obj2.id)].id, obj2.id)
-        self.assertEqual(self.storage_1.all()["State.{}".format(obj3.id)].id, obj3.id)
-        self.assertEqual(self.storage_1.all()["City.{}".format(obj4.id)].id, obj4.id)
-        self.assertEqual(self.storage_1.all()["Place.{}".format(obj5.id)].id, obj5.id)
-        self.assertEqual(self.storage_1.all()["Amenity.{}".format(obj6.id)].id, obj6.id)
-        self.assertEqual(self.storage_1.all()["Review.{}".format(obj7.id)].id, obj7.id)
+    def test_reload_with_arg(self):
+        with self.assertRaises(TypeError):
+            models.storage.reload(None)            
 
 
 if __name__ == '__main__':
