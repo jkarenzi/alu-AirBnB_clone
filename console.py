@@ -7,6 +7,7 @@ import models
 class HBNBCommand(cmd.Cmd):
     """class for the console, inheriting from cmd.Cmd"""
     prompt = '(hbnb)'
+    
     def do_quit(self, arg):
         """command for exiting the program."""
         return True
