@@ -29,7 +29,8 @@ class TestBaseModel(unittest.TestCase):
     def test_save(self):
         """
         test for the save method by getting the initial value of updated_at,
-        then calling the save method and checking if the save method updated the variable
+        then calling the save method and checking if the save method updated
+        the variable
         """
         first_updated_at = self.base_model.updated_at
         self.base_model.save()
@@ -40,15 +41,18 @@ class TestBaseModel(unittest.TestCase):
         """test for the to_dict method of the BaseModel class"""
         obj_dict = self.base_model.to_dict()
         self.assertIsInstance(obj_dict, dict)
-        self.assertEqual(obj_dict['__class__'], 'BaseModel')
-        self.assertEqual(obj_dict['created_at'], self.base_model.created_at.isoformat())
-        self.assertEqual(obj_dict['updated_at'], self.base_model.updated_at.isoformat())
+        self.assertEqual(
+            obj_dict['__class__'], 'BaseModel')
+        self.assertEqual(
+            obj_dict['created_at'], self.base_model.created_at.isoformat())
+        self.assertEqual(
+            obj_dict['updated_at'], self.base_model.updated_at.isoformat())
 
     def test__str__(self):
         """test for __str__ of the BaseModel class"""
         actual_output = str(self.base_model)
         expected_output = f"[BaseModel] ({self.base_model.id}) {self.base_model.__dict__}"
         self.assertEqual(actual_output, expected_output)
-                
+
 if __name__ == '__main__':
     unittest.main()
