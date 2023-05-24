@@ -77,12 +77,9 @@ class HBNBCommand(cmd.Cmd):
             for key, value in models.storage.all().items():
                 if key.split('.')[0] == args[0]:
                     print(str(value))
-          
+
     def do_update(self, arg):
-        """
-        Updates an instance based on the class name 
-        and id by adding or updating attribute
-        """
+        """Updates an instance based on class name and id"""
         args = arg.split()
         if not args:
             print("** class name missing **")
