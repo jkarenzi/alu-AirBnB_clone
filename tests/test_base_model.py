@@ -52,7 +52,7 @@ class TestBaseModel(unittest.TestCase):
         """test for __str__ of the BaseModel class"""
         actual_output = str(self.base_model)
         self.assertEqual(actual_output,
-        f"[BaseModel] ({self.base_model.id}) {self.base_model.__dict__}")
+            f"[BaseModel] ({self.base_model.id}) {self.base_model.__dict__}")
 
 if __name__ == '__main__':
     unittest.main()
