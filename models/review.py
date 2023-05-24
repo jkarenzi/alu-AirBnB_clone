@@ -2,6 +2,7 @@
 """documentation"""
 from models.base_model import BaseModel
 
+
 class Review(BaseModel):
     """class for review"""
     place_id = ""
