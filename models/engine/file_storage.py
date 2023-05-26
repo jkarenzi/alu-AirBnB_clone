@@ -47,22 +47,17 @@ class FileStorage():
         except FileNotFoundError:
             pass
 
-if __name__ == "__main__":
-    # Create an instance of FileStorage
-    file_storage = FileStorage()
-
-    # Reload previously saved objects from the JSON file
-    file_storage.reload()
-
-    # Create new instances of models
-    user = User()
-    state = State()
-    city = City()
-
-    # Add new objects to the file storage
-    file_storage.new(user)
-    file_storage.new(state)
-    file_storage.new(city)
-
-    # Save all objects to the JSON file
-    file_storage.save()        
+file_storage = FileStorage()
+# Reload previously saved objects from the JSON file
+file_storage.reload()
+# Create new instances of models
+user = User()
+state = State()
+city = City()
+# Add new objects to the file storage
+file_storage.new(user)
+file_storage.new(state)
+file_storage.new(city)
+# Save all objects to the JSON file
+file_storage.save()
+    
