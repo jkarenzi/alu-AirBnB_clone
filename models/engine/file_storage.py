@@ -1,13 +1,6 @@
 #!/usr/bin/python3
 
 import json
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.place import Place
-from models.amenity import Amenity
-from models.review import Review
 
 
 class FileStorage():
@@ -36,15 +29,6 @@ class FileStorage():
             json.dump(data, file)
 
     def reload(self):
-
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.state import State
-        from models.city import City
-        from models.place import Place
-        from models.amenity import Amenity
-        from models.review import Review
-
         try:
             with open(self.__file_path, 'r') as file:
                 data = json.load(file)
@@ -54,3 +38,12 @@ class FileStorage():
                     self.__objects[key] = obj
         except FileNotFoundError:
             pass
+
+
+file_storage = FileStorage()
+# Reload previously saved objects from the JSON file
+file_storage.reload()
+from models.user import User
+user = User()
+file_storage.new(user)
+file_storage.save()        
