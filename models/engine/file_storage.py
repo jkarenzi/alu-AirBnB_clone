@@ -36,6 +36,14 @@ class FileStorage():
             json.dump(data, file)
 
     def reload(self):
+        import json
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.place import Place
+        from models.amenity import Amenity
+        from models.review import Review
         """Deserializes the JSON file to __objects"""
         try:
             with open(self.__file_path, 'r') as file:
@@ -46,15 +54,16 @@ class FileStorage():
                     self.__objects[key] = obj
         except FileNotFoundError:
             pass
-storage = FileStorage()
-storage.reload()
+
+file_storage = FileStorage()
+file_storage.reload()
 user = User()
 state = State()
 city = City()
 # Add new objects to the file storage
-storage.new(user)
-storage.new(state)
-storage.new(city)
+file_storage.new(user)
+file_storage.new(state)
+file_storage.new(city)
 # Save all objects to the JSON file
-storage.save()
-storage.reload()
+file_storage.save()
+file_storage.reload()
