@@ -9,7 +9,6 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 
-
 class FileStorage():
     """
     class that serializes instances to a JSON file and
@@ -36,7 +35,7 @@ class FileStorage():
             json.dump(data, file)
 
     def reload(self):
-        import json
+
         from models.base_model import BaseModel
         from models.user import User
         from models.state import State
@@ -44,8 +43,7 @@ class FileStorage():
         from models.place import Place
         from models.amenity import Amenity
         from models.review import Review
-        
-        """Deserializes the JSON file to __objects"""
+
         try:
             with open(self.__file_path, 'r') as file:
                 data = json.load(file)
