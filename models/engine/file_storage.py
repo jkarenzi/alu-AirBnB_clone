@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import json
-import models
 
 
 class FileStorage():
@@ -31,7 +30,7 @@ class FileStorage():
             json.dump(data, file)
 
     def reload(self):
-        from models.base_model import BaseModel
+        import models
         try:
             with open(self.__file_path, 'r') as file:
                 data = json.load(file)
