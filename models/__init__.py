@@ -7,9 +7,6 @@ from models.amenity import Amenity
 from models.review import Review
 from models.place import Place
 
-storage = FileStorage()
-storage.reload()
-
 dict_classes = {"BaseModel": BaseModel, "User": User,  "State": State,
            "City": City, "Amenity": Amenity, "Place": Place,
            "Review": Review}
