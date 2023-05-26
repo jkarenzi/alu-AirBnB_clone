@@ -21,14 +21,6 @@ class FileStorage():
         self.__objects[key] = obj
 
     def save(self):
-        from models.base_model import BaseModel
-        from models.amenity import Amenity
-        from models.user import User
-        from models.city import City
-        from models.place import Place
-        from models.review import Review
-        from models.state import State
-
         """Serializes __objects to the JSON file"""
         data = {}
         for key, obj in self.__objects.items():
@@ -37,14 +29,6 @@ class FileStorage():
             json.dump(data, file)
 
     def reload(self):
-        from models.base_model import BaseModel
-        from models.amenity import Amenity
-        from models.user import User
-        from models.city import City
-        from models.place import Place
-        from models.review import Review
-        from models.state import State
-        
         try:
             with open(self.__file_path, 'r') as file:
                 data = json.load(file)
