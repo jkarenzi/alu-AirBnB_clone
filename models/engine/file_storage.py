@@ -8,7 +8,6 @@ from models.city import City
 from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
-import models
 
 
 class FileStorage():
@@ -47,15 +46,15 @@ class FileStorage():
                     self.__objects[key] = obj
         except FileNotFoundError:
             pass
-
-models.storage.reload()
+storage = FileStorage()
+storage.reload()
 user = User()
 state = State()
 city = City()
 # Add new objects to the file storage
-models.storage.new(user)
-models.storage.new(state)
-models.storage.new(city)
+storage.new(user)
+storage.new(state)
+storage.new(city)
 # Save all objects to the JSON file
-models.storage.save()
-models.storage.reload()
+storage.save()
+storage.reload()
