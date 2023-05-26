@@ -10,7 +10,6 @@ from models.review import Review
 from models.place import Place
 
 
-
 class FileStorage():
     """
     class that serializes instances to a JSON file and
@@ -48,6 +47,6 @@ class FileStorage():
                     self.__objects[key] = obj
         except FileNotFoundError:
             pass
-        
+ 
 storage = FileStorage()
 storage.reload()
