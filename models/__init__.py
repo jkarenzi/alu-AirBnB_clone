@@ -9,16 +9,6 @@ from models.place import Place
 
 storage = FileStorage()
 storage.reload()
-user = User()
-state = State()
-city = City()
-# Add new objects to the file storage
-storage.new(user)
-storage.new(state)
-storage.new(city)
-# Save all objects to the JSON file
-storage.save()
-storage.reload()
 
 dict_classes = {"BaseModel": BaseModel, "User": User,  "State": State,
            "City": City, "Amenity": Amenity, "Place": Place,
