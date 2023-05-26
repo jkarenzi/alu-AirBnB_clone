@@ -8,6 +8,10 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 from models.place import Place
+from models.engine.file_storage import FileStorage
+
+storage = FileStorage()
+storage.reload()
 
 
 dict_classes = {"BaseModel": BaseModel, "User": User,  "State": State,
