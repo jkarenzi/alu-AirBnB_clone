@@ -44,6 +44,7 @@ class FileStorage():
         from models.place import Place
         from models.amenity import Amenity
         from models.review import Review
+        
         """Deserializes the JSON file to __objects"""
         try:
             with open(self.__file_path, 'r') as file:
@@ -54,16 +55,3 @@ class FileStorage():
                     self.__objects[key] = obj
         except FileNotFoundError:
             pass
-
-file_storage = FileStorage()
-file_storage.reload()
-user = User()
-state = State()
-city = City()
-# Add new objects to the file storage
-file_storage.new(user)
-file_storage.new(state)
-file_storage.new(city)
-# Save all objects to the JSON file
-file_storage.save()
-file_storage.reload()
