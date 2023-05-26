@@ -30,7 +30,7 @@ class FileStorage():
             json.dump(data, file)
 
     def reload(self):
-        import models
+        from models.base_model import BaseModel
         try:
             with open(self.__file_path, 'r') as file:
                 data = json.load(file)
@@ -40,3 +40,6 @@ class FileStorage():
                     self.__objects[key] = obj
         except FileNotFoundError:
             pass
+        
+storage = FileStorage()
+storage.reload()
