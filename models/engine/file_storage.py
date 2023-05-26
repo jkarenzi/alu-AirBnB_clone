@@ -38,12 +38,3 @@ class FileStorage():
                     self.__objects[key] = obj
         except FileNotFoundError:
             pass
-
-
-file_storage = FileStorage()
-# Reload previously saved objects from the JSON file
-file_storage.reload()
-from models.user import User
-user = User()
-file_storage.new(user)
-file_storage.save()        
